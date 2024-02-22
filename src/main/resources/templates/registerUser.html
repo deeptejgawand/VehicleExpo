@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bike Expo</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Global styles */
+        body {
+            background-color: #000;
+            color: #fff;
+        }
+
+        /* Navbar styles */
+        .navbar {
+            background-color: #343a40 !important;
+        }
+
+        .navbar-brand, .navbar-nav .nav-link {
+            color: #ffffff !important;
+        }
+
+        /* Bike gallery styles */
+        .bike-gallery {
+            margin-top: 50px;
+            text-align: center;
+            float: left;
+            width: 50%;
+        }
+
+        .bike-card {
+            background-color: #000;
+            border: 2px solid #fff;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+        }
+
+        .bike-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .bike-card .card-body {
+            padding: 15px;
+        }
+
+        /* Login form styles */
+        .login-container {
+            background-color: #000;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+            float: right;
+            width: 45%; /* Adjusted width */
+            margin-left: 5%; /* Added margin */
+        }
+
+        .login-container h2 {
+            margin-bottom: 30px;
+            color: #fff;
+        }
+
+        .login-container input[type="text"],
+        .login-container input[type="password"] {
+            background-color: transparent;
+            border: 1px solid #fff;
+            color: #fff;
+        }
+
+        .login-container input[type="text"]:focus,
+        .login-container input[type="password"]:focus {
+            background-color: #fff;
+            color: #000;
+        }
+
+        .login-container button[type="submit"] {
+            background-color: #000;
+            color: #fff;
+            border: 1px solid #fff;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .login-container button[type="submit"]:hover {
+            background-color: #fff;
+            color: #000;
+        }
+
+        /* Footer styles */
+        .footer {
+            background-color: #343a40;
+            color: #ffffff;
+            padding: 20px 0;
+            clear: both;
+        }
+
+        .footer .container {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-dark navbar-expand-lg">
+    <div class="container">
+        <a class="navbar-brand" href="#">BikeExpo</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Bikes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Brands</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="fas fa-user"></i> Login</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Registration Form -->
+<div class="col-md-8">
+    <div class="login-container">
+        <h2 class="text-center mb-4">Register</h2>
+        <form  method="post" id="registrationForm" onsubmit="return validateForm()" th:action="@{/user/saveUser}" th:object="${user}">
+            <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="firstName">First Name</label>
+            <input type="text" class="form-control" id="firstName" name="firstName" required>
+            <span id="firstNameError" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="lastName">Last Name</label>
+            <input type="text" class="form-control" id="lastName" name="lastName" required>
+            <span id="lastNameError" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="address">Address</label>
+        <input type="text" class="form-control" id="address" name="address" required>
+    </div>
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" class="form-control" id="email" name="emailID" required>
+        <span id="emailError" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password" name="password" required>
+        <span id="passwordError" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="confirmPassword">Confirm Password</label>
+        <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required>
+        <span id="confirmPasswordError" class="text-danger"></span>
+    </div>
+    <input type="hidden" name="role" value="user"> <!-- Role field -->
+    <button type="submit" class="btn btn-primary btn-block">Register</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    function validateForm() {
+        var firstName = document.getElementById("firstName").value;
+        var lastName = document.getElementById("lastName").value;
+        var email = document.getElementById("email").value;
+        var password = document.getElementById("password").value;
+        var confirmPassword = document.getElementById("confirmPassword").value;
+
+        // Validate first name and last name
+        if (!isValidName(firstName)) {
+            document.getElementById("firstNameError").innerText = "First name cannot contain numbers";
+            return false;
+        }
+        if (!isValidName(lastName)) {
+            document.getElementById("lastNameError").innerText = "Last name cannot contain numbers";
+            return false;
+        }
+
+        // Validate email format
+        if (!isValidEmail(email)) {
+            document.getElementById("emailError").innerText = "Invalid email format";
+            return false;
+        }
+
+        // Validate password length
+        if (password.length < 6) {
+            document.getElementById("passwordError").innerText = "Password must be at least 6 characters long";
+            return false;
+        }
+
+        // Validate password match
+        if (password != confirmPassword) {
+            document.getElementById("passwordError").innerText = "Passwords do not match";
+            return false;
+        }
+
+        return true;
+    }
+
+    function isValidName(name) {
+        return /^[a-zA-Z]*$/.test(name);
+    }
+
+    function isValidEmail(email) {
+        // Regular expression for basic email validation
+        var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+</script>
+
+
+<!-- Footer -->
+<footer class="footer mt-5">
+    <div class="container">
+        <p>&copy; 2024 BikeExpo. All rights reserved.</p>
+    </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

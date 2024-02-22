@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Brand</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" rel="stylesheet">
+    <style>
+        body, .form-container {
+            background-color: #343a40; /* Dark grey background */
+            color: #fff; /* White text */
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
+        <div class="container">
+            <a href="#" class="navbar-brand">BikeExpo</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Bikes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Brands</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-user"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6 form-container p-4"> <!-- Add form-container class with padding -->
+                <h2 class="text-center mb-4">Add Brand</h2>
+                <form th:action="@{/admin/saveBrand}" method="POST" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="brandName">Brand Name</label>
+                        <input type="text" class="form-control" id="brandName" name="brandName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="brandDescription">Brand Description</label>
+                        <textarea class="form-control" id="brandDescription" name="brandDescription" rows="3" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="countryOfOrigin">Country of Origin</label>
+                        <input type="text" class="form-control" id="countryOfOrigin" name="countryOfOrigin" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="brandCEOName">Brand CEO Name</label>
+                        <input type="text" class="form-control" id="brandCEOName" name="brandCEOName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="yearOfOrigin">Year of Origin</label>
+                        <input type="text" class="form-control" id="yearOfOrigin" name="yearOfOrigin" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="brandLogoImage">Brand Logo Image</label>
+                        <input type="file" class="form-control-file" id="brandLogo" name="brandLogo">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            // Initialize Bootstrap Datepicker
+            $('#yearOfOrigin').datepicker({
+                format: "yyyy",
+                viewMode: "years",
+                minViewMode: "years",
+                autoclose: true
+            });
+        });
+    </script>
+</body>
+</html>

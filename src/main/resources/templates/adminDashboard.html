@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <!--fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <style>
+        .poppins-regular {
+            font-family: "Poppins", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+        .card {
+            background-color: #111;
+            color: #fff;
+        }
+        .card:hover {
+            box-shadow: 0 4px 6px white;
+        }
+        /* Add margin to the top of the cards */
+        .mt-8 {
+            margin-top: 64px; /* Adjust as needed */
+        }
+    </style>
+</head>
+<body class="bg-black text-white">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <!-- Logo -->
+            <a href="#" class="navbar-brand text-white text-lg font-bold poppins-regular hover:text-gray-400 transition-transform transform hover:scale-110">
+                BikeExpo
+            </a>
+
+            <!-- Navigation Links -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link text-white hover:text-gray-400 transition duration-300">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link text-white hover:text-gray-400 transition duration-300">Bikes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link text-white hover:text-gray-400 transition duration-300">Brands</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- User Icon (Font Awesome) -->
+            <div>
+                <i class="fas fa-user text-white text-xl"></i>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-8">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card p-4 rounded mb-4">
+                    <h2 class="text-xl font-bold mb-2">Bikes</h2>
+                   
+                    <a th:href="@{/admin/getAllBikes}" class="btn btn-primary">
+                        Show More
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card p-4 rounded mb-4">
+                    <h2 class="text-xl font-bold mb-2">Brands</h2>
+                   
+                    <a th:href="@{/admin/getAllBikes}" class="btn btn-primary">
+                        Show More
+                    </a>
+                </div>
+            </div>
+          
+            <div class="col-md-6">
+                <div class="card p-4 rounded mb-4">
+                    <h2 class="text-xl font-bold mb-2">Sales Data</h2>
+                  
+                    <a th:href="@{/admin/getsalesData}" class="btn btn-primary">
+                        Show More
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-white text-center py-4 fixed-bottom">
+        <div class="container">
+            BikeExpo &copy; <span id="currentYear"></span>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        // Get the current year and set it in the footer
+        document.getElementById("currentYear").innerHTML = new Date().getFullYear();
+        
+        // Add click event listeners to each "Show More" button
+        document.querySelectorAll('.card a.btn').forEach(button => {
+            button.addEventListener('click', () => {
+                // Define the behavior for each button click, for example, showing more content
+                // You can implement your logic here
+                console.log('Show more button clicked');
+            });
+        });
+    </script>
+</body>
+</html>

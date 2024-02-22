@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Drive Requests</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
+        <div class="container">
+            <a href="#" class="navbar-brand">BikeExpo</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Bikes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Brands</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-user"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6 p-4">
+                <h2 class="text-center mb-4">Test Drive Request</h2>
+                <form th:action="@{/approve-test-drive}" method="POST">
+                    <input type="hidden" name="testDriveID" value="1"> <!-- Hidden Test Drive ID -->
+                    <input type="hidden" name="dealerShipId" value="1"> <!-- Hidden Dealership ID -->
+                    <input type="hidden" name="userID" value="1"> <!-- Hidden User ID -->
+                    <input type="hidden" name="approvalStatus" value="true"> <!-- Hidden Approval Status -->
+                    <div class="form-group">
+                        <label for="bikeName">Bike Name</label>
+                        <input type="text" class="form-control" id="bikeName" name="bikeName" value="Bike 1" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="requestedDate">Requested Date</label>
+                        <input type="date" class="form-control" id="requestedDate" name="requestedDate" value="2024-02-20" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="requestedTimeSlot">Requested Time Slot</label>
+                        <input type="text" class="form-control" id="requestedTimeSlot" name="requestedTimeSlot" value="9:00 AM - 10:00 AM" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="userName">User Name</label>
+                        <input type="text" class="form-control" id="userName" name="userName" value="John Doe" readonly>
+                    </div>
+                    <div class="mt-4">
+                        <button type="submit" class="btn btn-success mr-2">Approve</button>
+                        <button type="button" class="btn btn-danger">Reject</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
